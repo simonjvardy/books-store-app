@@ -19,6 +19,16 @@ This coding example is part of a Udemy Python course using Python to build an ex
 - As a user, I want to be able to update / edit an entry
 - As a user, I want to be able to delete an entry
 
+### **Wireframe** ###
+
+- GUI Interface
+
+![GUI Wireframe](wireframe/gui_wireframe.png)
+
+- GUI Interface with tkinter grid layout
+
+![GUI Wireframe](wireframe/gui_wireframe_tkinterGrid.png)
+
 ---
 
 ## Technologies ##
