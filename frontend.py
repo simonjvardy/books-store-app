@@ -60,25 +60,27 @@ def get_selected_row(event):
     clicked on in the listbox
     """
 
-    # Global variable needed for delete and update functions
-    global selected_tuple
+    try:
+        # Global variable needed for delete and update functions
+        global selected_tuple
 
-    # Returns the row index from the row data tuple
-    index = list1.curselection()[0]
+        # Returns the list index from the row data tuple
+        index = list1.curselection()[0]
 
-    # Returns the row data tuple with the specified index
-    selected_tuple = list1.get(index)
+        # Returns the row data tuple with the specified index
+        selected_tuple = list1.get(index)
 
-    # Populate the enty fields with the selected row data
-    entry1.delete(0, END)
-    entry1.insert(0, selected_tuple[1])
-    entry2.delete(0, END)
-    entry2.insert(0, selected_tuple[2])
-    entry3.delete(0, END)
-    entry3.insert(0, selected_tuple[3])
-    entry4.delete(0, END)
-    entry4.insert(0, selected_tuple[4])
-
+        # Populate the enty fields with the selected row data
+        entry1.delete(0, END)
+        entry1.insert(0, selected_tuple[1])
+        entry2.delete(0, END)
+        entry2.insert(0, selected_tuple[2])
+        entry3.delete(0, END)
+        entry3.insert(0, selected_tuple[3])
+        entry4.delete(0, END)
+        entry4.insert(0, selected_tuple[4])
+    except IndexError:
+        pass
 
 def update_command():
     """
