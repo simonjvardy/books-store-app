@@ -70,7 +70,7 @@ def get_selected_row(event):
         # Returns the row data tuple with the specified index
         selected_tuple = list1.get(index)
 
-        # Populate the enty fields with the selected row data
+        # Populate the entry fields with the selected row data
         entry1.delete(0, END)
         entry1.insert(0, selected_tuple[1])
         entry2.delete(0, END)
