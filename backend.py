@@ -110,7 +110,3 @@ def update(id,title, author, year, isbn):
 
 
 connect()  # Will always run connect function when frontend.py is run
-# insert("The Sun","John Smith",1918,9123458)  # Test data
-update(4,"The Sun Vol.2", "John Smith", 1918, 9123458)
-print(view())
-print(search(author="John Smith"))
