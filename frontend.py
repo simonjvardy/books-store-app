@@ -5,6 +5,7 @@ Year, ISBN
 """
 
 from tkinter import *
+import backend
 
 window = Tk()
 
@@ -49,7 +50,7 @@ sb1.grid(row=2, column=2, rowspan=6)
 list1.configure(yscrollcommand=sb1.set)
 sb1.configure(command=list1.yview)
 
-# Create buttons
+# Create the buttons
 button1 = Button(window, text="View All", width=12)
 button1.grid(row=2, column=3)
 
