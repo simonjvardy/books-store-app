@@ -94,7 +94,7 @@ git clone https://github.com/simonjvardy/books-store-app.git
 - To run the book store application, enter the following command into the terminal window:
 
 ```Python
-python3 app.py
+python3 frontend.py
 ```
 
 ---

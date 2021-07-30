@@ -5,7 +5,9 @@ Year, ISBN
 """
 
 from tkinter import *
-import backend
+from backend import Database
+
+database = Database("books.db")
 
 # Button command functions
 def view_command():
@@ -14,7 +16,7 @@ def view_command():
     return the data for the list box
     """
     list1.delete(0, END)
-    for row in backend.view():
+    for row in database.view():
         list1.insert(END, row)
 
 
@@ -25,7 +27,7 @@ def search_command():
     for the list box
     """
     list1.delete(0, END)
-    for row in backend.search(
+    for row in database.search(
             title_text.get(),
             author_text.get(),
             year_text.get(),
@@ -39,7 +41,7 @@ def add_command():
     and display the item in the list box.
     """
     list1.delete(0, END)
-    backend.insert(
+    database.insert(
             title_text.get(),
             author_text.get(),
             year_text.get(),
@@ -86,7 +88,7 @@ def update_command():
     """
     Function to update the selected row data
     """
-    backend.update(
+    database.update(
         selected_tuple[0],
         title_text.get(),
         author_text.get(),
@@ -98,7 +100,7 @@ def delete_command():
     """
     Function to delete the selected row data
     """
-    backend.delete(selected_tuple[0])
+    database.delete(selected_tuple[0])
 
 # Build the GUI Window
 window = Tk()
