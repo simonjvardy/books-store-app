@@ -4,11 +4,11 @@ class Database:
 
     def __init__(self, db):
         """
-        Function to connect to the sqlite3 database
+        Constructor method to connect to the sqlite3 database
         """
-        conn=sqlite3.connect(db)
-        cur=conn.cursor()
-        cur.execute(
+        self.conn=sqlite3.connect(db)
+        self.cur=self.conn.cursor()
+        self.cur.execute(
             """
             CREATE TABLE IF NOT EXISTS book (
                 id INTEGER PRIMARY KEY,
@@ -19,49 +19,40 @@ class Database:
                 )
             """
         )
-        conn.commit()
-        conn.close()
+        self.conn.commit()
 
 
     def insert(self,title,author,year,isbn):
         """
-        Function to create new rows in the database
+        Method to create new rows in the database
         """
-        conn=sqlite3.connect("books.db")
-        cur=conn.cursor()
-        cur.execute(
+        self.cur.execute(
             """
             INSERT INTO book VALUES (NULL,?,?,?,?)
             """, (title, author, year, isbn)
         )
-        conn.commit()
-        conn.close()
+        self.conn.commit()
 
 
     def view(self):
         """
-        Function to read all data from the database
+        Method to read all data from the database
         """
-        conn=sqlite3.connect("books.db")
-        cur=conn.cursor()
-        cur.execute(
+        self.cur.execute(
             """
             SELECT *
             FROM book
             """
         )
-        rows = cur.fetchall()
-        conn.close()
+        rows = self.cur.fetchall()
         return rows
 
 
     def search(self,title="",author="",year="",isbn=""):
         """
-        Function to search for specific database table rows
+        Method to search for specific database table rows
         """
-        conn=sqlite3.connect("books.db")
-        cur=conn.cursor()
-        cur.execute(
+        self.cur.execute(
             """
             SELECT *
             FROM book
@@ -71,33 +62,27 @@ class Database:
             OR isbn = ?
             """, (title, author, year, isbn)
         )
-        rows = cur.fetchall()
-        conn.close()
+        rows = self.cur.fetchall()
         return rows
 
     def delete(self,id):
         """
-        Function to delete a row in the database
+        Method to delete a row in the database
         """
-        conn=sqlite3.connect("books.db")
-        cur=conn.cursor()
-        cur.execute(
+        self.cur.execute(
             """
             DELETE FROM book
             WHERE id = ?
             """, (id,)
         )
-        conn.commit()
-        conn.close()
+        self.conn.commit()
 
 
     def update(self,id,title, author, year, isbn):
         """
-        Function to update a row in the database
+        Method to update a row in the database
         """
-        conn=sqlite3.connect("books.db")
-        cur=conn.cursor()
-        cur.execute(
+        self.cur.execute(
             """
             UPDATE book SET
             title = ?,
@@ -107,8 +92,12 @@ class Database:
             WHERE id = ?
             """, (title, author, year, isbn, id)
         )
-        conn.commit()
-        conn.close()
+        self.conn.commit()
+
+    def __del__(self):
+        """
+        Destructor method to close the database connection
+        """
+        self.conn.close()
 
 
-# connect()  # Will always run connect function when frontend.py is run
